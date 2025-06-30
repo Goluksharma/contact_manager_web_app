@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::Layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <section> 
+    <div class="card mr-3">
+        <div class="card-body">
+           <h1 class="text-center">Add contact</h1>
+            <div th:if="${param.success}" class="alert alert-success text-center">Contact added successfully!</div>
+            <div th:if="${param.error}" class="alert alert-danger text-center">There was an error adding the contact.</div>
+
+            <div class="container-fluid mt-1">
+                <div class="row">
+                    <div class="col md-10 offset-md-1">
+                        <form action="#"
+                         method="post"
+                         class="mt-2"
+                         th:object="${contact}"
+                         th:action="@{/user/processcontact}"
+                         enctype="multipart/form-data"
+                         >
+                         <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text mr-3">
+                                    <i class="fa fa-plus"></i>
+                                
+                                </div>
+
+                            </div>
+                            <input required type="text" id="first name" name="name" placeholder="Enter Name Here" class="form-control"/>
+
+                         </div>
+                         <div class="input-group mt-3">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text mr-3">
+                                    <i class="fas fa-user-alt"></i>
+                                
+                                </div>
+
+                            </div>
+                            <input required type="text" id="secondName" name="secondName" placeholder="Enter Nick name Here" class="form-control"/>
+
+                         </div>
+                         <div class="input-group mt-3">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text mr-3">
+                                    <i class="fas fa-phone"></i>
+                                
+                                </div>
+
+                            </div>
+                            <input required minlength="10" maxlength="13" type="number" id="PhoneNumber" name="phone" placeholder="Enter PhoneNumber Here" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '')"/>
+
+                         </div>
+                         <div class="input-group mt-3">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text mr-3">
+                                   @
+                                </div>
+
+                            </div>
+                            <input required type="email" id="email" name="email" placeholder="Enter email here" class="form-control" pattern="[a-z0-9._%+-]+@(gmail\.com|outlook\.com)$" title="Please enter a valid Gmail or Outlook email address"/>
+
+                         </div>
+                        <div class="input-group mt-3">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text mr-3">
+                                    <i class="fa fa-briefcase"></i>
+                                
+                                </div>
+
+                            </div>
+                            <input required type="text" id="work" name="work" placeholder="Enter work Here" class="form-control"/>
+
+                         </div>
+                         <div class="input-group-mt-3">
+                            <textarea placeholder="enter about youself" name="description" id="description" cols="30" rows="10" class="form-control"></textarea>
+                         </div>
+                         <div class="custom-file">
+                            <input type="file" name="profileimage">
+                         </div>
+                         <div class="container text-center ">
+                            <button class="btn btn-outline-primary">Save Now</button>
+                         </div>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        </form>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+</section>
+<script th:src="@{/javascript/script.js}"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::Layout(~{::section})">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+</head>
+
+<body>
+  <section>
+    <div class="card mr-3 ml-3">
+      <div class="card-body">
+        <div class="container">
+          <img style="width: 200px; height: 200px;" class="my_profile_picture" th:src="@{'/img/'+${c.image}}"
+            alt="profileimage">
+          <!-- Add more contact details here as needed -->
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+
+</html>

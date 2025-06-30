@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::Layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Yourself Here</title>
+</head>
+<body class="bg-custom">
+  <section> 
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="container text-center">
+                    <img style="width: 80px;" th:src="@{/img/edit.png}" alt="Edit">
+                </div>
+                <div class="my-card">
+                  <!-- Session-Based Alerts -->
+                  <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert alert-primary" role="alert">
+                    <th:block th:text="${session.message.content}"></th:block>
+                  </div>
+
+                    <h1 class="text-center">Register Here</h1>
+                    <form th:action="@{/do_register}" method="post" th:object="${user}">
+                        
+                        <!-- Name Field -->
+                        <div class="mb-3">
+                            <label for="name_field" class="form-label">Your Name</label>
+                            <input name="name"
+                            type="text"
+                            class="form-control"
+                            th:field="*{name}"
+                            th:classappend="${#fields.hasErrors('name') ? 'is-invalid' : ''}"
+                            id="name_field"
+                            placeholder="Enter Here"
+                            required>
+
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('name')}">
+    <span th:each="e : ${#fields.errors('name')}" th:text="${e}"></span>
+</div>
+
+                        </div>
+
+                        <!-- Email Field -->
+                        <div class="mb-3">
+                            <label for="email_field" class="form-label">Email ID</label>
+                            <input name="email"
+                                   type="email"
+                                   class="form-control"
+                                   id="email_field"
+                                   placeholder="Enter Here"
+                                   required
+                                   th:field="*{email}">
+                        </div>
+
+                        <!-- Password Field -->
+                        <div class="mb-3">
+                            <label for="password_field" class="form-label">Password</label>
+                            <input name="password"
+                                   type="password"
+                                   class="form-control"
+                                   id="password_field"
+                                   placeholder="Enter Here"
+                                   required
+                                   th:field="*{password}">
+                            <small class="form-text text-muted">Your password must be at least 8 characters long.</small>
+                        </div>
+
+                        <!-- About Field -->
+                        <div class="form-group">
+                            <textarea name="about"
+                                      placeholder="Enter about yourself"
+                                      rows="5"
+                                      class="form-control"
+                                      th:text="*{about}"></textarea>
+                        </div>
+
+                        <!-- Agreement Checkbox -->
+                        <div class="form-group form-check mt-2">
+                            <input name="agreement"
+                                   type="checkbox"
+                                   class="form-check-input"
+                                   id="agreement"/>
+                            <label for="agreement">Accept Terms and Conditions</label>
+                        </div>
+
+                        <!-- Submit & Reset Buttons -->
+                        <div class="container text-center mt-3">
+                            <button type="submit" class="bg-primary text-white btn btn-primary w-100">Submit</button>
+                            <button type="reset" class="btn btn-warning w-100 mt-2">Reset</button>
+                        </div>    
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+</body>
+</html>
